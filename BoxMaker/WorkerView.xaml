@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="BoxMaker.WorkerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BoxMaker;assembly=" 
+             mc:Ignorable="d" 
+             d:DesignHeight="170" d:DesignWidth="300">
+
+    <!-- These lines give us some data to work with at design time. We will reset the data context at runtime -->
+    <UserControl.DataContext>
+        <local:WorkerViewModel BoxesMade="-1" WorkerName="Kevin" />
+    </UserControl.DataContext>
+
+    <!-- From here on we are designing the interface -->
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Name: " VerticalAlignment="Center"/>
+            <TextBox x:Name="m_WorkerNameTextBox" Text="{Binding WorkerName, Mode=TwoWay}" IsEnabled="False" Width="102" Margin="5,0,5,0" />
+            <Button x:Name="m_AllowEditButton" Content="Allow Editing" Width="91" Click="m_AllowEditButton_Click" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Boxes Made: " />
+            <TextBlock Text="{Binding BoxesMade}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <Button Content="Start" Command="{Binding StartCommand}" Width="65" Margin="0,0,5,0" />
+            <Button Content="Stop" Command="{Binding StopCommand}" Width="65" />
+        </StackPanel>
+    </StackPanel>
+
+</UserControl>
